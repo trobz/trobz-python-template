@@ -1,0 +1,31 @@
+[project]
+name = "trobz-python-template"
+version = "0.0.1"
+requires-python = ">=3.12"
+
+dependencies = [
+  "pre-commit>=2.20.0",
+  "ruff>=0.11.5",
+]
+
+[project.optional-dependencies]
+build = ["uv ~= 0.7.12"]
+
+[tool.semantic_release]
+version_toml = ["pyproject.toml:project.version"]
+build_command = """
+  python -m pip install -e '.[build]'
+  uv lock --upgrade-package trobz-python-template
+  git add uv.lock
+  uv build
+"""
+
+[tool.semantic_release.changelog]
+exclude_commit_patterns = [
+    '''chore(?:\([^)]*?\))?: .+''',
+    '''ci(?:\([^)]*?\))?: .+''',
+    '''style(?:\([^)]*?\))?: .+''',
+    '''test(?:\([^)]*?\))?: .+''',
+    '''build\((?!deps\): .+)''',
+    '''[Ii]nitial [Cc]ommit.*''',
+]

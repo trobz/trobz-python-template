@@ -1,0 +1,56 @@
+# TODO: license?
+
+############# Configuration ##################
+_subdirectory: template
+
+############# Prompt ##################
+project_name:
+  type: str
+
+package_name:
+  type: str
+  help: |
+        Name of the python distribution package.
+        Must be a valid python identifier, i.e. my_package
+  default: "{{ project_name | replace('-', '_') }}"
+  validator: >
+        {% if not (package_name | regex_search('^[a-zA-Z][a-zA-Z_0-9]+$')) %}
+        {{package_name}} is not a valid python package name
+        {% endif %}
+
+project_description:
+  type: str
+  help: Your project description
+
+repository_namespace:
+  type: str
+  help: Your repository namespace
+  default: "trobz"
+
+repository_name:
+    type: str
+    help: |
+        Name of the repository.
+    default: "{{ project_name }}"
+    validator: >-
+        {% if not (repository_name | regex_search('^[a-zA-Z][a-zA-Z_\\.\\-0-9]+$')) %}
+        {{ repository_name }} is not a valid repo name
+        {% endif %}
+
+author_username:
+  type: str
+  help: Your username (e.g. on GitHub)
+
+author_email:
+  type: str
+  help: Your email
+
+
+enable_github_action:
+  type: bool
+  default: False
+
+publish_to_pypi:
+  type: bool
+  default: False
+  when: "{{ enable_github_action }}"
