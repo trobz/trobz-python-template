@@ -5,14 +5,14 @@
 ## Features
 
 - [uv](https://github.com/astral-sh/uv) setup, with pre-defined `pyproject.toml`
-- Pre-configured tools for code formatting, quality analysis and testing:
+- Pre-configured tools for code formatting:
   [ruff](https://github.com/charliermarsh/ruff),
-- Tests run with [pytest](https://github.com/pytest-dev/pytest) and plugins, with [coverage](https://github.com/nedbat/coveragepy) support
+- Tests run with [pytest](https://github.com/pytest-dev/pytest)
 - Support for GitHub workflows
 - Auto-generated `CHANGELOG.md` from Git (conventional) commits
 
 ## Quick Start
 
 ```bash
-copier copy --trust "https://github.com/trobz/trobz-python-template.git" /path/to/your/new/project
+copier copy "https://github.com/trobz/trobz-python-template.git" /path/to/your/new/project
 ```
