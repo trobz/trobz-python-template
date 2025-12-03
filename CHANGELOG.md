@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.0.2 (2025-12-03)
+
+### Bug Fixes
+
+- Add build step
+  ([`a24ece5`](https://github.com/trobz/trobz-python-template/commit/a24ece5e3ee35813390d00328e6250bb8fcb9594))
+
+
 ## v1.0.1 (2025-12-01)
 
 ### Bug Fixes
