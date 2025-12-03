@@ -67,6 +67,12 @@ jobs:
         with:
           ref: {% raw %}${{ needs.release.outputs.tag }}{% endraw %}
 
+      - name: Set up the environment
+        uses: ./.github/actions/setup-python-env
+
+      - name: Build Package
+        run: make build
+
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@v1.13.0
         with:
