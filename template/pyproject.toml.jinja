@@ -13,7 +13,7 @@ dependencies = [
 ]
 
 [project.urls]
-Repository = "https://github.com/trobz/{{project_name}}"
+Repository = "https://{{git_platform}}/trobz/{{project_name}}"
 
 [project.scripts]
 {{ project_name }} = "{{ package_name }}.main:app"
@@ -42,12 +42,16 @@ module-name = "{{ package_name }}"
 module-root = ""
 
 
-{% if enable_github_action -%}
+{% if enable_github_action or enable_gitlab_action -%}
 [project.optional-dependencies]
 build = ["uv ~= 0.7.12"]
 
 [tool.semantic_release]
 version_toml = ["pyproject.toml:project.version"]
+{% if enable_gitlab_action -%}
+type = "gitlab"
+{% endif -%}
+
 build_command = """
   python -m pip install -e '.[build]'
   uv lock --upgrade-package {{project_name}}

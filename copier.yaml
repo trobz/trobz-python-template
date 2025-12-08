@@ -26,6 +26,14 @@ repository_namespace:
   help: Your repository namespace
   default: "trobz"
 
+git_platform:
+    type: str
+    help: Git platform hosting the repository
+    default: github.com
+    choices:
+        - github.com
+        - gitlab.trobz.com
+
 repository_name:
     type: str
     help: |
@@ -48,8 +56,14 @@ author_email:
 enable_github_action:
   type: bool
   default: False
+  when: "{{ git_platform == 'github.com' }}"
 
 publish_to_pypi:
   type: bool
   default: False
   when: "{{ enable_github_action }}"
+
+enable_gitlab_action:
+  type: bool
+  default: False
+  when: "{{ git_platform == 'gitlab.com' }}"
