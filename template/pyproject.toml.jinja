@@ -52,6 +52,23 @@ version_toml = ["pyproject.toml:project.version"]
 type = "gitlab"
 {% endif -%}
 
+# Commit parser - this should be at the top level
+commit_parser = "conventional"
+
+# Allow 0.x.x versions (prevents jumping straight to 1.0.0)
+allow_zero_version = true
+
+# Don't do major version bumps when in 0.x.x
+major_on_zero = false
+
+# Tag format
+tag_format = "v{version}"
+
+# Branch configuration
+[tool.semantic_release.branches.main]
+match = "main"
+prerelease = false
+
 build_command = """
   python -m pip install -e '.[build]'
   uv lock --upgrade-package {{project_name}}
