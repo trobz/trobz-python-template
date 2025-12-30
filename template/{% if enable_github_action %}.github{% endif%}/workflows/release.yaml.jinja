@@ -41,39 +41,3 @@ jobs:
           github_token: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
           git_committer_name: "github-actions"
           git_committer_email: "actions@users.noreply.github.com"
-
-    outputs:
-      released: {% raw %}${{ steps.release.outputs.released || 'false' }}{% endraw %}
-      tag: {% raw %}${{ steps.release.outputs.tag }}{% endraw %}
-
-
-  publish:
-    runs-on: ubuntu-latest
-    needs: release
-    if: {% raw %}${{ needs.release.outputs.released == 'true' }}{% endraw %}
-
-    environment:
-      name: pypi
-      url: https://pypi.org/p/{{ project_name }}
-
-    permissions:
-      contents: write
-      {# IMPORTANT: this permission is mandatory for Trusted Publishing #}
-      id-token: write
-
-    steps:
-      - name: Check out at new tag
-        uses: actions/checkout@v4
-        with:
-          ref: {% raw %}${{ needs.release.outputs.tag }}{% endraw %}
-
-      - name: Set up the environment
-        uses: ./.github/actions/setup-python-env
-
-      - name: Build Package
-        run: make build
-
-      - name: Publish package distributions to PyPI
-        uses: pypa/gh-action-pypi-publish@v1.13.0
-        with:
-          packages-dir: dist
