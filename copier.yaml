@@ -21,6 +21,23 @@ project_description:
   type: str
   help: Your project description
 
+project_type:
+  type: str
+  choices:
+    - cli
+    - service
+  default: cli
+  help: Type of the project
+
+service_framework:
+  type: str
+  choices:
+    - fastapi
+    - flask
+  default: fastapi
+  when: "{{ project_type == 'service' }}"
+  help: Web framework to use
+
 repository_namespace:
   type: str
   help: Your repository namespace
