@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.0.3 (2025-12-30)
+
+### Bug Fixes
+
+- Introduce publish step
+  ([`b751854`](https://github.com/trobz/trobz-python-template/commit/b7518549c99a74423f67d881cb2cd71d6c55205e))
+
+
 ## v1.0.2 (2025-12-03)
 
 ### Bug Fixes
