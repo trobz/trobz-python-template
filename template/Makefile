@@ -35,3 +35,14 @@ help:
 	[[print(f'\033[36m{m[0]:<20}\033[0m {m[1]}') for m in re.findall(r'^([a-zA-Z_-]+):.*?## (.*)$$', open(makefile).read(), re.M)] for makefile in ('$(MAKEFILE_LIST)').strip().split()]"
 
 .DEFAULT_GOAL := help
+
+{% if project_type == 'service' %}
+.PHONY: serve
+serve: ## Run the service
+	@echo "🚀 Running service"
+    {% if service_framework == 'flask' %}
+	@uv run flask --app {{package_name}}.app run --host 0.0.0.0 --port 8000
+    {% elif service_framework == 'fastapi' %}
+	@uv run uvicorn {{package_name}}.main:app --reload --host 0.0.0.0 --port 8000
+    {% endif %}
+{% endif %}
