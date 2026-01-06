@@ -13,6 +13,21 @@ check: ## Run code quality tools.
 	@echo "🚀 Static type checking: Running ty"
 	@uv run ty check
 
+.PHONY: release-dry
+release-dry: ## Simulate the release process and show the next version
+	@echo "🚀 Simulating release process..."
+	@uv run semantic-release --noop version --print
+
+.PHONY: release-stable
+release-stable: ## Prepare project for stable 1.0.0 release (disables 0.x.x versions)
+	@echo "🚀 Preparing for stable release..."
+	@sed -i 's/allow_zero_version = true/allow_zero_version = false/' pyproject.toml
+	@echo "Updated pyproject.toml: allow_zero_version = false"
+	@echo "Next steps:"
+	@echo "   1. git add pyproject.toml"
+	@echo "   2. git commit -m 'chore: prepare for stable 1.0.0 release'"
+	@echo "   3. Push to main - the next feat/fix commit will trigger 1.0.0"
+
 .PHONY: test
 test: ## Test the code with pytest
 	@echo "🚀 Testing code: Running pytest"
