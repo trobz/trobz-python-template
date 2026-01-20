@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.0.4 (2026-01-20)
+
+### Bug Fixes
+
+- Merge publish job into release workflow
+  ([`f47b4a0`](https://github.com/trobz/trobz-python-template/commit/f47b4a0b12d1176ed4065a32eacc0e4d13c3c21d))
+
+
 ## v1.0.3 (2025-12-30)
 
 ### Bug Fixes
