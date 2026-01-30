@@ -9,14 +9,26 @@ license = "AGPL-3.0"
 license-files = ["LICENSE"]
 
 dependencies = [
-"typer>=0.20"
+    {%- if project_type == 'cli' %}
+    "typer>=0.20",
+    {%- elif project_type == 'service' %}
+    {%- if service_framework == 'fastapi' %}
+    "fastapi>=0.110.0",
+    {%- elif service_framework == 'flask' %}
+    "flask>=3.0.0",
+    {%- endif %}
+    "uvicorn>=0.27.0",
+    "pydantic-settings>=2.2.0",
+    {%- endif %}
 ]
 
 [project.urls]
 Repository = "https://github.com/trobz/{{project_name}}"
 
+{%- if project_type == 'cli' %}
 [project.scripts]
 {{ project_name }} = "{{ package_name }}.main:app"
+{%- endif %}
 
 [dependency-groups]
 dev = [
