@@ -13,7 +13,7 @@ dependencies = [
 ]
 
 [project.urls]
-Repository = "https://github.com/trobz/{{project_name}}"
+Repository = "https://{{git_platform}}/trobz/{{project_name}}"
 
 [project.scripts]
 {{ project_name }} = "{{ package_name }}.main:app"
@@ -42,12 +42,33 @@ module-name = "{{ package_name }}"
 module-root = ""
 
 
-{% if enable_github_action -%}
+{% if enable_github_action or enable_gitlab_action -%}
 [project.optional-dependencies]
 build = ["uv ~= 0.7.12"]
 
 [tool.semantic_release]
 version_toml = ["pyproject.toml:project.version"]
+{% if enable_gitlab_action -%}
+type = "gitlab"
+{% endif -%}
+
+# Commit parser - this should be at the top level
+commit_parser = "conventional"
+
+# Allow 0.x.x versions (prevents jumping straight to 1.0.0)
+allow_zero_version = true
+
+# Don't do major version bumps when in 0.x.x
+major_on_zero = false
+
+# Tag format
+tag_format = "v{version}"
+
+# Branch configuration
+[tool.semantic_release.branches.main]
+match = "main"
+prerelease = false
+
 build_command = """
   python -m pip install -e '.[build]'
   uv lock --upgrade-package {{project_name}}

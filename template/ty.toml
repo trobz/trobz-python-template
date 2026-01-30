@@ -1,3 +1,6 @@
+[rules.invalid-argument-type]
+ignore = []
+
 [environment]
 python = "./.venv"
 python-version = "3.12"
