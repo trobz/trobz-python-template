@@ -2,6 +2,17 @@
 
 <!-- version list -->
 
+## v1.1.0 (2026-02-03)
+
+### Features
+
+- Add service support template files
+  ([`51ae1fa`](https://github.com/trobz/trobz-python-template/commit/51ae1fa202a2ca4cc6e15916cd985eb0b0a5ebee))
+
+- Support pre-release
+  ([`510600e`](https://github.com/trobz/trobz-python-template/commit/510600e5c08a1d4ee58d178e02b937a47b7a83d1))
+
+
 ## v1.0.4 (2026-01-20)
 
 ### Bug Fixes
