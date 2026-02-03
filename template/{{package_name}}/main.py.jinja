@@ -1,0 +1,61 @@
+{% if project_type == 'cli' -%}
+import typer
+
+app = typer.Typer()
+
+
+@app.command()
+def hello(name: str):
+    print(f"Hello {name}")
+
+
+if __name__ == "__main__":
+    app()
+
+{%- elif project_type == 'service' -%}
+{%- if service_framework == 'fastapi' -%}
+from fastapi import FastAPI
+from .settings import settings
+import uvicorn
+
+app = FastAPI(title="{{ project_name }}")
+
+
+@app.get("/")
+def read_root():
+    return {"Hello": "World", "env": settings.environment}
+
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
+
+
+if __name__ == "__main__":
+    uvicorn.run(
+        "{{ package_name }}.main:app",
+        host=settings.server_host,
+        port=settings.server_port,
+        reload=settings.debug,
+    )
+
+{%- elif service_framework == 'flask' -%}
+from flask import Flask
+from .settings import settings
+
+app = Flask(__name__)
+
+
+@app.route("/")
+def hello_world():
+    return {"Hello": "World", "env": settings.environment}
+
+@app.route("/health")
+def health_check():
+    return {"status": "ok"}
+
+
+if __name__ == "__main__":
+    # For development only. Use a production WSGI server for deployment.
+    app.run(host=settings.server_host, port=settings.server_port, debug=settings.debug)
+{%- endif -%}
+{%- endif -%}
