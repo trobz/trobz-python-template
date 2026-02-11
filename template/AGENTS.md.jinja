@@ -1,0 +1,50 @@
+# AGENTS.md
+
+> Quick reference for AI coding agents.
+
+## Project
+
+{% if project_type == 'cli' %}
+- **Type**: CLI (Typer)
+{% elif service_framework == 'fastapi' %}
+- **Type**: Service (FastAPI)
+{% else %}
+- **Type**: Service (Flask)
+{% endif %}
+- **Language**: Python 3.10+
+- **Package manager**: [uv](https://docs.astral.sh/uv/)
+
+## Entry Points
+
+{% if project_type == 'cli' %}
+- `{{ package_name }}/main.py` — CLI entry point
+{% elif service_framework == 'fastapi' %}
+- `{{ package_name }}/main.py` — FastAPI application
+- `{{ package_name }}/settings.py` — Environment configuration
+{% else %}
+- `{{ package_name }}/main.py` — Flask application
+- `{{ package_name }}/settings.py` — Environment configuration
+{% endif %}
+
+## Commands
+
+Run `make help` for all commands. Key ones:
+
+```
+make install   # Install deps + pre-commit hooks
+make check     # Lint, format, type-check
+make test      # Run pytest
+{% if project_type == 'service' %}
+make serve     # Start the server
+{% endif %}
+```
+
+## Key Files
+
+- `Makefile` — Project commands
+- `pyproject.toml` — Dependencies and build config
+- `ruff.toml` — Linter/formatter rules
+{% if project_type == 'service' %}
+- `.env.sample` — Environment variables template
+{% endif %}
+- `tests/` — Test suite (pytest)
