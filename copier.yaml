@@ -70,3 +70,7 @@ publish_to_pypi:
   type: bool
   default: False
   when: "{{ enable_github_action }}"
+
+############# Tasks ##################
+_tasks:
+  - "ln -sf AGENTS.md CLAUDE.md"
