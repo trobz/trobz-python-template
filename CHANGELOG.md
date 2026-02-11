@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.2.0 (2026-02-11)
+
+### Features
+
+- Add AGENTS.md template for AI coding agent reference
+  ([`2df5b65`](https://github.com/trobz/trobz-python-template/commit/2df5b6503e533c2afa2687fbedd9570e464ebe2a))
+
+
 ## v1.1.0 (2026-02-03)
 
 ### Features
