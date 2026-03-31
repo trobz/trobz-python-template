@@ -30,7 +30,7 @@ jobs:
       prevents accidentally releasing un-evaluated changes.
       #}
       - name: Checkout Repository on Release Branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: {% raw %}${{ github.ref_name }}{% endraw %}
 
@@ -63,7 +63,7 @@ jobs:
 
     steps:
       - name: Check out at new tag
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: {% raw %}${{ needs.release.outputs.tag }}{% endraw %}
 
