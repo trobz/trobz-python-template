@@ -30,6 +30,8 @@ select = [
     "PGH",
     # pyupgrade
     "UP",
+    # pylint
+    "PLC0415",
     # ruff
     "RUF",
     # tryceratops
