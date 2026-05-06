@@ -57,3 +57,14 @@ serve: ## Run the service
 	@echo "🚀 Running service"
 	@uv run python -m {{package_name}}.main
 {% endif %}
+{% if enable_docs_site %}
+.PHONY: docs
+docs: ## Build the documentation site
+	@echo "🚀 Building documentation site"
+	@uv run zensical build
+
+.PHONY: docs-serve
+docs-serve: ## Serve the documentation site locally
+	@echo "🚀 Serving documentation site"
+	@uv run zensical serve
+{% endif %}
