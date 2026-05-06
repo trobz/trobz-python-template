@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.3.0 (2026-05-06)
+
+### Features
+
+- Add optional docs-site support via Zensical
+  ([`64895da`](https://github.com/trobz/trobz-python-template/commit/64895da829099c3e99d022691978c40c954a993a))
+
+
 ## v1.2.0 (2026-02-11)
 
 ### Features
