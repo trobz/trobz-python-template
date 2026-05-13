@@ -16,7 +16,7 @@ jobs:
       uses: actions/checkout@v6
 
     - name: Semantic Version Release
-      uses: python-semantic-release/python-semantic-release@v10.5.2
+      uses: python-semantic-release/python-semantic-release@350c48fcb3ffcdfd2e0a235206bc2ecea6b69df0 # v10.5.3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         git_committer_name: "github-actions"
