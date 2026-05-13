@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.3.1 (2026-05-13)
+
+### Bug Fixes
+
+- Pin zensical to 0.0.40
+  ([`8b56b27`](https://github.com/trobz/trobz-python-template/commit/8b56b27fb910592662adac6f157e0bd6a5598895))
+
+
 ## v1.3.0 (2026-05-06)
 
 ### Features
