@@ -79,3 +79,4 @@ publish_to_pypi:
 ############# Tasks ##################
 _tasks:
   - "ln -sf AGENTS.md CLAUDE.md"
+  - "bash -c '[[ -f site-docs/zensical.toml ]] && [[ ! -e zensical.toml ]] && ln -sf site-docs/zensical.toml . || echo No need to link zensical.toml'"

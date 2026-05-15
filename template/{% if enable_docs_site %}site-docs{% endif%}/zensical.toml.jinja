@@ -1,0 +1,62 @@
+[project]
+site_name = "{{ project_name }}"
+site_url = "https://trobz.github.io/{{ project_name }}"
+site_description = "{{ project_description }}"
+site_author = "Trobz"
+docs_dir = "site-docs/docs"
+site_dir = "site"
+copyright = "Copyright &copy; 2026 Trobz"
+nav = [
+  {Home = "index.md"},
+  {"Getting Started" = "getting-started.md"},
+]
+extra_css = [
+  "stylesheets/hero.css",
+  "stylesheets/site.css",
+]
+
+# Three.js CDN — loaded globally so the hero scene can use it
+[[project.extra_javascript]]
+path = "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
+
+# Hero particle network animation — requires Three.js above
+[[project.extra_javascript]]
+path = "javascripts/hero-scene.js"
+
+[project.theme]
+language = "en"
+custom_dir = "site-docs/overrides"
+features = [
+    "content.code.copy",
+    "content.code.select",
+    "navigation.footer",
+    "navigation.indexes",
+    "navigation.path",
+    "navigation.sections",
+    "navigation.tabs",
+    "navigation.top",
+    "navigation.tracking",
+    "search.highlight",
+    "header.autohide"
+]
+
+[project.theme.icon]
+logo = "lucide/terminal"
+
+[[project.theme.palette]]
+scheme = "default"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+scheme = "slate"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to light mode"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/github"
+link = "https://github.com/trobz/odoo-venv"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/python"
+link = "https://pypi.org/project/{{ project_name }}/"
