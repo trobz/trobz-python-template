@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.3.2 (2026-05-20)
+
+### Bug Fixes
+
+- **template**: Bump astral-sh/setup-uv to v8.1.0
+  ([`a995281`](https://github.com/trobz/trobz-python-template/commit/a99528161a3da5ee95a7d632be53db730cd7bee6))
+
+
 ## v1.3.1 (2026-05-13)
 
 ### Bug Fixes
