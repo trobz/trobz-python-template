@@ -1,0 +1,9 @@
+/* ============================================================
+   Global site overrides — applied across all pages
+   ============================================================ */
+
+/* Hide the logo + site name in the header, keep search & theme toggle */
+.md-header__button.md-logo,
+.md-header__topic {
+  display: none;
+}

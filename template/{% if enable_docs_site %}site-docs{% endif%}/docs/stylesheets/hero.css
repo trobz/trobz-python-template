@@ -1,0 +1,479 @@
+/* ============================================================
+   Landing page — Techy / Abstract dark theme for odoo-venv
+   Typography: JetBrains Mono (code) + IBM Plex Sans (body)
+   Colors: Dark bg, orange/white accents (Trobz brand)
+   ============================================================ */
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap");
+
+/* ---------- CSS Custom Properties ---------- */
+:root {
+  --ov-bg: #111111;
+  --ov-text: #f5f5f5;
+  --ov-text-muted: #a3a3a3;
+  --ov-accent: #f97316;
+  --ov-accent-glow: rgba(249, 115, 22, 0.4);
+  --ov-primary: #ea580c;
+  --ov-surface: rgba(255, 255, 255, 0.06);
+  --ov-border: rgba(255, 255, 255, 0.12);
+  --ov-font-mono: "JetBrains Mono", "Fira Code", monospace;
+  --ov-font-sans: "IBM Plex Sans", system-ui, sans-serif;
+
+  /* Layout */
+  --ov-container-width: 1440px;
+  --ov-split-ratio: 0.9fr 2.1fr;
+}
+
+/* ---------- Fullscreen layout reset (landing only) ---------- */
+body:has(.ov-landing),
+body:has(.ov-landing) .md-main__inner,
+body:has(.ov-landing) .md-main,
+body:has(.ov-landing) .md-content,
+body:has(.ov-landing) .md-content__inner {
+  margin: 0 !important;
+  padding: 0 !important;
+  max-width: none !important;
+  background: var(--ov-bg) !important;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ---------- Landing wrapper ---------- */
+.ov-landing {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  background: var(--ov-bg);
+  color: var(--ov-text);
+  overflow: hidden;
+}
+
+/* ---------- Three.js canvas (background) ---------- */
+.ov-landing__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* ══════════════════════════════════════════════════════
+   Split layout — left: copy, right: demo
+   ══════════════════════════════════════════════════════ */
+
+.ov-split {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: var(--ov-split-ratio);
+  align-items: center;
+  gap: 4rem;
+  width: 100%;
+  max-width: var(--ov-container-width);
+  padding: 0 4rem;
+}
+
+/* ---------- Left column — hero copy ---------- */
+.ov-split__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+/* ---------- Right column — demo frame ---------- */
+.ov-split__demo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: ease-out 0.8s both;
+}
+
+/* ---------- GitHub badge ---------- */
+.ov-github-badge {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 1.2rem;
+  background: var(--ov-surface);
+  border: 1px solid var(--ov-border);
+  border-radius: 999px;
+  color: var(--ov-text) !important;
+  font-family: var(--ov-font-mono);
+  font-size: 0.85rem;
+  text-decoration: none;
+  backdrop-filter: blur(12px);
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.ov-github-badge:hover {
+  background: var(--ov-border);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* ---------- Terminal badge ---------- */
+.ov-hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  background: var(--ov-surface);
+  border: 1px solid var(--ov-border);
+  border-radius: 999px;
+  font-family: var(--ov-font-mono);
+  font-size: 0.875rem;
+  color: var(--ov-text-muted);
+  backdrop-filter: blur(8px);
+  animation: ov-fadeDown 0.6s ease-out both;
+}
+
+.ov-hero__prompt {
+  color: var(--ov-accent);
+  font-weight: 600;
+}
+
+.ov-hero__cmd {
+  color: var(--ov-text);
+}
+
+/* Blinking cursor — CSS only */
+.ov-hero__cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: var(--ov-accent);
+  animation: ov-blink 1s step-end infinite;
+}
+
+/* ---------- Title ---------- */
+.ov-hero__title {
+  margin: 0 !important;
+  animation: ov-fadeUp 0.7s ease-out 0.2s both;
+}
+
+.ov-hero__line {
+  display: block;
+  font-family: var(--ov-font-mono);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1 !important;
+  white-space: nowrap;
+}
+
+.ov-hero__line--1 {
+  font-size: clamp(2.5rem, 6vw, 5rem) !important;
+  background: linear-gradient(135deg, #fff 0%, #f97316 50%, #ea580c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ---------- Subtitle ---------- */
+.ov-hero__subtitle {
+  font-family: var(--ov-font-sans);
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--ov-text-muted);
+  margin: 0;
+  animation: ov-fadeUp 0.7s ease-out 0.4s both;
+}
+
+.ov-hero__accent {
+  color: var(--ov-accent);
+  font-weight: 500;
+}
+
+/* ---------- CTA buttons ---------- */
+.ov-hero__actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  animation: ov-fadeUp 0.7s ease-out 0.6s both;
+}
+
+.ov-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  font-family: var(--ov-font-mono);
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-decoration: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+}
+
+.ov-btn__icon {
+  flex-shrink: 0;
+}
+
+/* Primary — solid accent button */
+.ov-btn--primary {
+  background: var(--ov-primary);
+  color: #fff !important;
+  border: 1px solid transparent;
+  box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
+}
+
+.ov-btn--primary:hover {
+  background: #c2410c;
+  box-shadow: 0 0 30px rgba(249, 115, 22, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Ghost — outlined button */
+.ov-btn--ghost {
+  background: transparent;
+  color: var(--ov-text) !important;
+  border: 1px solid var(--ov-border);
+}
+
+.ov-btn--ghost:hover {
+  background: var(--ov-surface);
+  border-color: var(--ov-text-muted);
+  transform: translateY(-2px);
+}
+
+/* ══════════════════════════════════════════════════════
+   Terminal / macOS window frame (CSS only)
+   ══════════════════════════════════════════════════════ */
+
+.ov-terminal-frame {
+  width: 100%;
+  border-radius: 12px;
+  background: #1a1a1a;
+  border: 1px solid var(--ov-border);
+  box-shadow:
+    0 32px 64px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 0 60px var(--ov-accent-glow);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.ov-terminal-frame:hover {
+  box-shadow:
+    0 40px 80px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 0 90px rgba(249, 115, 22, 0.55);
+}
+
+/* Title bar with traffic lights */
+.ov-terminal-frame__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  background: #242424;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  user-select: none;
+}
+
+/* Traffic-light dots */
+.ov-terminal-frame__dot {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.ov-terminal-frame__dot--red {
+  background: #ff5f57;
+}
+
+.ov-terminal-frame__dot--yellow {
+  background: #ffbd2e;
+}
+
+.ov-terminal-frame__dot--green {
+  background: #28c941;
+}
+
+.ov-terminal-frame__bar-title {
+  flex: 1;
+  text-align: center;
+  font-family: var(--ov-font-sans);
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--ov-text-muted);
+  margin-right: calc(3 * 12px + 2 * 0.5rem);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ov-terminal-frame__body {
+  display: block;
+  line-height: 0;
+  background: #0d0d0d;
+}
+
+.ov-terminal-frame__gif {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ══════════════════════════════════════════════════════
+   Feature highlights (unused currently, kept for future)
+   ══════════════════════════════════════════════════════ */
+
+.ov-hero__features {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+  animation: ov-fadeUp 0.7s ease-out 0.8s both;
+}
+
+.ov-feature {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--ov-font-sans);
+  font-size: 0.875rem;
+  color: var(--ov-text-muted);
+}
+
+.ov-feature__icon {
+  color: var(--ov-accent);
+  flex-shrink: 0;
+}
+
+/* ---------- Animations ---------- */
+@keyframes ov-fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ov-fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ov-blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ---------- Reduced motion (accessibility) ---------- */
+@media (prefers-reduced-motion: reduce) {
+
+  .ov-hero__badge,
+  .ov-hero__title,
+  .ov-hero__subtitle,
+  .ov-hero__actions,
+  .ov-hero__features,
+  .ov-split__demo {
+    animation: none !important;
+  }
+
+  .ov-hero__cursor {
+    animation: none !important;
+    opacity: 1;
+  }
+
+  .ov-btn:hover {
+    transform: none;
+  }
+}
+
+/* ---------- Responsive: tablet (≤ 960px) — stack vertically ---------- */
+@media screen and (max-width: 60rem) {
+  .ov-split {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 2rem 2rem;
+    justify-items: center;
+    overflow-y: auto;
+    max-height: 100vh;
+  }
+
+  .ov-split__copy {
+    align-items: center;
+    text-align: center;
+  }
+
+  .ov-hero__actions {
+    justify-content: center;
+  }
+
+  .ov-hero__line--1 {
+    font-size: clamp(2.5rem, 10vw, 4rem) !important;
+  }
+
+  .ov-terminal-frame {
+    max-width: 600px;
+  }
+
+  body:has(.ov-landing),
+  body:has(.ov-landing) .md-main__inner,
+  body:has(.ov-landing) .md-main,
+  body:has(.ov-landing) .md-content,
+  body:has(.ov-landing) .md-content__inner {
+    overflow: auto;
+    height: auto;
+  }
+}
+
+/* ---------- Responsive: mobile (≤ 480px) ---------- */
+@media screen and (max-width: 30rem) {
+  .ov-split {
+    padding: 1.5rem 1.25rem;
+    gap: 2rem;
+  }
+
+  .ov-hero__badge {
+    font-size: 0.75rem;
+    padding: 0.4rem 1rem;
+  }
+
+  .ov-hero__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .ov-btn {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .ov-terminal-frame {
+    border-radius: 8px;
+  }
+}

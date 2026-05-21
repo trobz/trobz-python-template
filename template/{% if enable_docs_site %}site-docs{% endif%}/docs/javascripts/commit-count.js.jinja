@@ -1,0 +1,46 @@
+/**
+ * Fetches total commit count from the GitHub API and displays it
+ * in the #commit-count-badge element on the landing page.
+ *
+ * Uses the Link header pagination trick: request 1 commit per page,
+ * read the last page number from the Link header — that IS the count.
+ */
+
+; (function () {
+    const GITHUB_REPO = '{{ repository_namespace }}/{{ repository_name }}';
+
+    function formatCount(n) {
+        if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
+        return String(n);
+    }
+
+    async function fetchCommitCount() {
+        const label = document.getElementById('github-commit-count');
+        if (!label) return;
+
+        try {
+            const res = await fetch(
+                `https://api.github.com/repos/${GITHUB_REPO}/commits?per_page=1`,
+                { headers: { Accept: 'application/vnd.github+json' } }
+            );
+            if (!res.ok) return;
+
+            const link = res.headers.get('Link') || '';
+            const match = link.match(/[?&]page=(\d+)>;\s*rel="last"/);
+            if (!match) return;
+
+            const total = parseInt(match[1], 10);
+            label.textContent = `${formatCount(total)} commits`;
+        } catch (_) {
+            // Silently fail — label stays with placeholder
+        }
+    }
+
+    if (typeof document$ !== 'undefined') {
+        document$.subscribe(fetchCommitCount);
+    } else if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', fetchCommitCount);
+    } else {
+        fetchCommitCount();
+    }
+})();

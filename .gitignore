@@ -218,3 +218,7 @@ __marimo__/
 .opencode/
 plans/
 .repomixignore
+
+# VIM files
+.*.sw?
+.*.un~
