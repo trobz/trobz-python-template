@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.4.0 (2026-05-21)
+
+### Features
+
+- **template**: Have common site-docs components
+  ([`e4d1145`](https://github.com/trobz/trobz-python-template/commit/e4d11459530690d90e1cc3e9079e0293a0816284))
+
+
 ## v1.3.2 (2026-05-20)
 
 ### Bug Fixes
