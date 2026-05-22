@@ -3,12 +3,15 @@ site_name = "{{ project_name }}"
 site_url = "https://trobz.github.io/{{ project_name }}"
 site_description = "{{ project_description }}"
 site_author = "Trobz"
-docs_dir = "site-docs/docs"
+docs_dir = "docs"
 site_dir = "site"
 copyright = "Copyright &copy; 2026 Trobz"
 nav = [
   {Home = "index.md"},
   {"Getting Started" = "getting-started.md"},
+{%- if project_type == 'cli' %}
+  {"CLI Reference" = "cli-reference.md"},
+{%- endif %}
 ]
 extra_css = [
   "stylesheets/hero.css",
@@ -25,7 +28,7 @@ path = "javascripts/hero-scene.js"
 
 [project.theme]
 language = "en"
-custom_dir = "site-docs/overrides"
+custom_dir = "overrides"
 features = [
     "content.code.copy",
     "content.code.select",
@@ -55,7 +58,7 @@ toggle.name = "Switch to light mode"
 
 [[project.extra.social]]
 icon = "fontawesome/brands/github"
-link = "https://github.com/trobz/odoo-venv"
+link = "https://github.com/{{ repository_namespace }}/{{ repository_name }}"
 
 [[project.extra.social]]
 icon = "fontawesome/brands/python"
