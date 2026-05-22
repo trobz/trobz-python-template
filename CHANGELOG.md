@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.4.1 (2026-05-22)
+
+### Bug Fixes
+
+- **template**: Unescape main.html override so docs site builds
+  ([`263e2b0`](https://github.com/trobz/trobz-python-template/commit/263e2b0919c664492e60fb9a3c9958e33fbb5be8))
+
+
 ## v1.4.0 (2026-05-21)
 
 ### Features
