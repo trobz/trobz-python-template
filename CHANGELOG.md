@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.6.0 (2026-09-09)
+
+### Features
+
+- Scaffold CLAUDE.md as an @AGENTS.md import
+  ([`84abbdf`](https://github.com/trobz/trobz-python-template/commit/84abbdf5e101acbb0650dabba67c7ec08c85d3d2))
+
+
 ## v1.5.0 (2026-09-09)
 
 ### Bug Fixes
