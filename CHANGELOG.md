@@ -2,6 +2,19 @@
 
 <!-- version list -->
 
+## v1.5.0 (2026-09-09)
+
+### Bug Fixes
+
+- **template**: Commit uv.lock for --frozen CI, scope Pages perms to deploy
+  ([`ddfffd3`](https://github.com/trobz/trobz-python-template/commit/ddfffd34dd63594f9ca47ddb5491fb5116f5f51b))
+
+### Features
+
+- **template**: CLI auto-doc pipeline + working docs build
+  ([`1be7537`](https://github.com/trobz/trobz-python-template/commit/1be7537457f4df40940284a83cf5853bc5372159))
+
+
 ## v1.4.1 (2026-05-22)
 
 ### Bug Fixes
