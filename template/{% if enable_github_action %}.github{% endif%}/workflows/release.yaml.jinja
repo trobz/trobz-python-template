@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+concurrency:
+  group: release-{% raw %}${{ github.ref }}{% endraw %}
+  cancel-in-progress: false
+
 {# default: least privileged permissions across all jobs #}
 permissions:
   contents: read
