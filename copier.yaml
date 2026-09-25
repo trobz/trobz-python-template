@@ -76,6 +76,12 @@ publish_to_pypi:
   default: False
   when: "{{ enable_github_action }}"
 
+enable_deploy:
+  type: bool
+  default: False
+  when: "{{ enable_github_action }}"
+  help: Add a manual deploy workflow using the trobz/deploy.py action
+
 ############# Tasks ##################
 _tasks:
   - "ln -sf AGENTS.md CLAUDE.md"
