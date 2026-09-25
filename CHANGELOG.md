@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v1.6.1 (2026-09-25)
+
+### Bug Fixes
+
+- **template**: Pin gh-action-pypi-publish to v1.14.2
+  ([`cb6d28d`](https://github.com/trobz/trobz-python-template/commit/cb6d28d7a015c29b26422638a6d5a05a9e918627))
+
+
 ## v1.6.0 (2026-09-09)
 
 ### Features
